@@ -1,0 +1,9 @@
+#calculator-container{
+    border: 1px solid red;
+}
+
+#display-container{
+    width: 130px;
+    border: 1px solid red;
+    text-align: end;
+}
