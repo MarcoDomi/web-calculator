@@ -13,7 +13,7 @@ function resetValues() {
 }
 
 function add(a, b) {
-    return a + b;
+    return parseInt(a) + parseInt(b);
 }
 
 function subtract(a, b) {
@@ -25,9 +25,6 @@ function mutiply(a, b) {
 }
 
 function divide(a, b) {
-    console.log(a / b);
-    console.log(a);
-    console.log(b);
     return a / b;
 }
 
@@ -63,9 +60,9 @@ function changeDisplay(element) {
     else 
         display.textContent += element.textContent;
 
-    if (op !== null) 
+    if (op !== null)
         secondNumber = display.textContent;
-    
+
 }
 //assign events to number buttons
 let display_btn = document.querySelectorAll('.display-btn');
