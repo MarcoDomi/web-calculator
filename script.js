@@ -1,5 +1,14 @@
-
 let display = document.querySelector('#display-container');
+let op = null;
+let firstNumber = null;
+let secondNumber = null;
+
+
+function resetValues() {
+    op = null;
+    firstNumber = null;
+    secondNumber = null;
+}
 
 function add(a, b) {
     return a + b;
@@ -37,21 +46,27 @@ function operate(op, num1, num2) {
     return result;
 }
 
+
 function changeDisplay(element) {
     
     let equationStr = display.textContent;
-    
-    if (equationStr === '0') 
+    //use boolean variable to fix secondnumber digit issue
+    if (equationStr === '0' || firstNumber !== null) //if display value is 0 or if the first number has been selected
         display.textContent = element.textContent;
     else 
         display.textContent += element.textContent;
-}
 
+    if (op !== null) {
+        secondNumber = element.textContent;
+    }
+}
+//assign events to number buttons
 let display_btn = document.querySelectorAll('.display-btn');
 display_btn.forEach(element => { 
     element.addEventListener('click', ()=>changeDisplay(element));
 });
 
+//assign event to decimal button
 let decimal_btn = document.querySelector('#decimal-btn');
 decimal_btn.addEventListener('click', () => { 
     let displayStr = display.textContent;
@@ -65,6 +80,7 @@ function utility_operate(utility) {
     switch (utility) {
         case 'AC':
             display.textContent = 0;
+            resetValues();
             break;
         case '+/-':
             display.textContent *= -1;
@@ -73,8 +89,19 @@ function utility_operate(utility) {
             display.textContent /= 100;
     } 
 }
-
+//assign events to utility buttons
 let utility_btn = document.querySelectorAll('.utility-btn');
 utility_btn.forEach((element) => {
     element.addEventListener('click',()=>utility_operate(element.textContent));
 });
+
+//assign events to operation buttons
+let op_btn = document.querySelectorAll('.operation-btn');
+op_btn.forEach((element) => {
+    element.addEventListener('click', () => {
+        op = element.innerText;
+        firstNumber = display.textContent;
+        console.log(firstNumber)
+    });
+});
+
