@@ -25,6 +25,9 @@ function mutiply(a, b) {
 }
 
 function divide(a, b) {
+    console.log(a / b);
+    console.log(a);
+    console.log(b);
     return a / b;
 }
 
@@ -60,9 +63,9 @@ function changeDisplay(element) {
     else 
         display.textContent += element.textContent;
 
-    if (op !== null) {
-        secondNumber = element.textContent;
-    }
+    if (op !== null) 
+        secondNumber = display.textContent;
+    
 }
 //assign events to number buttons
 let display_btn = document.querySelectorAll('.display-btn');
@@ -108,4 +111,17 @@ op_btn.forEach((element) => {
         replaceDisplay = true;
     });
 });
+
+let equal_btn = document.querySelector('#equal-btn');
+equal_btn.addEventListener('click', () => {
+    let result;
+    if (op !== null) {
+        if (secondNumber !== null)
+            result = operate(op, firstNumber, secondNumber);
+        else
+            result = operate(op, firstNumber, firstNumber);
+    
+        display.textContent = result;
+    }
+})
 
