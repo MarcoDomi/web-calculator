@@ -13,7 +13,7 @@ function resetValues() {
 }
 
 function add(a, b) {
-    return parseInt(a) + parseInt(b);
+    return a + b;
 }
 
 function subtract(a, b) {
@@ -81,17 +81,24 @@ decimal_btn.addEventListener('click', () => {
 
 
 function utility_operate(utility) {
+    let result;
     switch (utility) {
         case 'AC':
-            display.textContent = 0;
+            result = 0;
             resetValues();
             break;
         case '+/-':
-            display.textContent *= -1;
+            result = display.textContent * -1;
             break;
         case '%':
-            display.textContent /= 100;
+            result = display.textContent / 100;
     } 
+    display.textContent = result;
+    if (firstNumber !== null && op !== null) {
+        secondNumber = result;
+        replaceDisplay = false;
+    }
+
 }
 //assign events to utility buttons
 let utility_btn = document.querySelectorAll('.utility-btn');
@@ -114,9 +121,9 @@ equal_btn.addEventListener('click', () => {
     let result;
     if (op !== null) {
         if (secondNumber !== null)
-            result = operate(op, firstNumber, secondNumber);
+            result = operate(op, Number(firstNumber), Number(secondNumber));
         else
-            result = operate(op, firstNumber, firstNumber);
+            result = operate(op, Number(firstNumber), Number(firstNumber));
     
         display.textContent = result;
     }
