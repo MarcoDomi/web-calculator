@@ -2,12 +2,14 @@ let display = document.querySelector('#display-container');
 let op = null;
 let firstNumber = null;
 let secondNumber = null;
+let replaceDisplay = true;
 
 
 function resetValues() {
     op = null;
     firstNumber = null;
     secondNumber = null;
+    replaceDisplay = true;
 }
 
 function add(a, b) {
@@ -50,9 +52,11 @@ function operate(op, num1, num2) {
 function changeDisplay(element) {
     
     let equationStr = display.textContent;
-    //use boolean variable to fix secondnumber digit issue
-    if (equationStr === '0' || firstNumber !== null) //if display value is 0 or if the first number has been selected
+    
+    if (equationStr === '0' || replaceDisplay === true) { //if display value is 0 or if replaceDisplay is true
         display.textContent = element.textContent;
+        replaceDisplay = false;
+    }
     else 
         display.textContent += element.textContent;
 
@@ -101,7 +105,7 @@ op_btn.forEach((element) => {
     element.addEventListener('click', () => {
         op = element.innerText;
         firstNumber = display.textContent;
-        console.log(firstNumber)
+        replaceDisplay = true;
     });
 });
 
