@@ -25,6 +25,8 @@ function mutiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b === 0)
+        return "Invalid Division";
     return a / b;
 }
 
@@ -124,6 +126,9 @@ equal_btn.addEventListener('click', () => {
         else
             result = operate(op, Number(firstNumber), Number(firstNumber));
     
+        if(typeof firstNumber === Number)
+            firstNumber = result;
+        
         display.textContent = result;
         replaceDisplay = true;
     }
