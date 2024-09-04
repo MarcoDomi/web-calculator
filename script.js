@@ -26,7 +26,7 @@ function mutiply(a, b) {
 
 function divide(a, b) {
     if (b === 0)
-        return "Invalid Division";
+        return "kek";
     return a / b;
 }
 
@@ -114,11 +114,12 @@ op_btn.forEach((element) => {
         op = element.innerText;
         firstNumber = display.textContent;
         replaceDisplay = true;
+
+
     });
 });
 
-let equal_btn = document.querySelector('#equal-btn');
-equal_btn.addEventListener('click', () => {
+function evaluate() {
     let result;
     if (op !== null) {
         if (secondNumber !== null)
@@ -128,9 +129,12 @@ equal_btn.addEventListener('click', () => {
     
         if(typeof firstNumber === Number)
             firstNumber = result;
-        
+
         display.textContent = result;
         replaceDisplay = true;
     }
-})
+}
+
+let equal_btn = document.querySelector('#equal-btn');
+equal_btn.addEventListener('click', evaluate);
 
