@@ -62,9 +62,6 @@ function changeDisplay(element) {
     else 
         display.textContent += element.textContent;
 
-    if (op !== null)
-        secondNumber = display.textContent;
-
 }
 //assign events to number buttons
 let display_btn = document.querySelectorAll('.display-btn');
@@ -94,13 +91,8 @@ function utility_operate(utility) {
         case '%':
             display.textContent /= 100;
     } 
-    
-    if (firstNumber !== null && op !== null) {
-        secondNumber = display.textContent;
-        replaceDisplay = false;
-    }
-
 }
+
 //assign events to utility buttons
 let utility_btn = document.querySelectorAll('.utility-btn');
 utility_btn.forEach((element) => {
@@ -114,22 +106,14 @@ op_btn.forEach((element) => {
         op = element.innerText;
         firstNumber = display.textContent;
         replaceDisplay = true;
-
-
     });
 });
 
 function evaluate() {
     let result;
     if (op !== null) {
-        if (secondNumber !== null)
-            result = operate(op, Number(firstNumber), Number(secondNumber));
-        else
-            result = operate(op, Number(firstNumber), Number(firstNumber));
-    
-        if(typeof firstNumber === Number)
-            firstNumber = result;
-
+        secondNumber = display.textContent;
+         result = operate(op, Number(firstNumber), Number(secondNumber));
         display.textContent = result;
         replaceDisplay = true;
     }
