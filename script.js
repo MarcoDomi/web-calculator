@@ -81,21 +81,20 @@ decimal_btn.addEventListener('click', () => {
 
 
 function utility_operate(utility) {
-    let result;
     switch (utility) {
         case 'AC':
-            result = 0;
+            display.textContent = 0;
             resetValues();
             break;
         case '+/-':
-            result = display.textContent * -1;
+            display.textContent *= -1;
             break;
         case '%':
-            result = display.textContent / 100;
+            display.textContent /= 100;
     } 
-    display.textContent = result;
+    
     if (firstNumber !== null && op !== null) {
-        secondNumber = result;
+        secondNumber = display.textContent;
         replaceDisplay = false;
     }
 
@@ -126,6 +125,7 @@ equal_btn.addEventListener('click', () => {
             result = operate(op, Number(firstNumber), Number(firstNumber));
     
         display.textContent = result;
+        replaceDisplay = true;
     }
 })
 
