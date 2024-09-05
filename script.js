@@ -103,6 +103,9 @@ utility_btn.forEach((element) => {
 let op_btn = document.querySelectorAll('.operation-btn');
 op_btn.forEach((element) => {
     element.addEventListener('click', () => {
+        if (op !== null) {
+            evaluate();
+        }
         op = element.innerText;
         firstNumber = display.textContent;
         replaceDisplay = true;
@@ -113,7 +116,7 @@ function evaluate() {
     let result;
     if (op !== null) {
         secondNumber = display.textContent;
-         result = operate(op, Number(firstNumber), Number(secondNumber));
+        result = operate(op, Number(firstNumber), Number(secondNumber));
         display.textContent = result;
         replaceDisplay = true;
         op = null;
