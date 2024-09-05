@@ -116,6 +116,7 @@ function evaluate() {
          result = operate(op, Number(firstNumber), Number(secondNumber));
         display.textContent = result;
         replaceDisplay = true;
+        op = null;
     }
 }
 
