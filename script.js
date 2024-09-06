@@ -56,9 +56,16 @@ function divide(a, b) {
 }
 
 function roundLength(value) {
-    if (String(value).length > MAX_LENGTH) 
-        return Number(value.toPrecision(MAX_LENGTH).slice(0,MAX_LENGTH));
-
+    valueStr = String(value);
+    if (!valueStr.includes('.') && valueStr.length > MAX_LENGTH) {
+        return NaN;
+    }
+    else if (valueStr.includes('.')) {
+        let valueArr = valueStr.split('.');
+        let wholeDigitsLen = valueArr[0].length;
+        return value.toPrecision(MAX_LENGTH - wholeDigitsLen);
+    }
+        
     return value;
 }
 
