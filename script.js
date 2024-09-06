@@ -4,6 +4,8 @@ let firstNumber = null;
 let secondNumber = null;
 let replaceDisplay = true;
 
+const MAX_LENGTH = 14;
+
 document.body.addEventListener('keypress', (event) => {
     console.log(event.key);
     if (event.key.charCodeAt(0) >= 48 && event.key.charCodeAt(0) <= 57) {
@@ -53,6 +55,13 @@ function divide(a, b) {
     return a / b;
 }
 
+function roundLength(value) {
+    if (String(value) > 14) 
+        return Number(value.setPrecision(14));
+
+    return value;
+}
+
 function operate(op, num1, num2) {
     let result;
     switch (op) {
@@ -75,15 +84,16 @@ function operate(op, num1, num2) {
 
 
 function changeDisplay(equationStr) {
-    
-    if (display.textContent === '0' || replaceDisplay === true) { //if display value is 0 or if replaceDisplay is true
-        display.textContent = equationStr;
-        replaceDisplay = false;
+    if (display.textContent.length < MAX_LENGTH) {
+        if (display.textContent === '0' || replaceDisplay === true) { //if display value is 0 or if replaceDisplay is true
+            display.textContent = equationStr;
+            replaceDisplay = false;
+        }
+        else
+            display.textContent += equationStr;
     }
-    else 
-        display.textContent += equationStr;
-
 }
+
 //assign events to number buttons
 let display_btn = document.querySelectorAll('.display-btn');
 display_btn.forEach(element => { 
