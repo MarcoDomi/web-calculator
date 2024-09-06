@@ -4,7 +4,7 @@ let firstNumber = null;
 let secondNumber = null;
 let replaceDisplay = true;
 
-const MAX_LENGTH = 14;
+const MAX_LENGTH = 8;
 
 document.body.addEventListener('keypress', (event) => {
     console.log(event.key);
@@ -56,8 +56,8 @@ function divide(a, b) {
 }
 
 function roundLength(value) {
-    if (String(value) > 14) 
-        return Number(value.setPrecision(14));
+    if (String(value).length > MAX_LENGTH) 
+        return Number(value.toPrecision(MAX_LENGTH).slice(0,MAX_LENGTH));
 
     return value;
 }
@@ -79,7 +79,8 @@ function operate(op, num1, num2) {
             break;
     }
 
-    return result;
+    //return result;
+    return roundLength(result);
 }
 
 
