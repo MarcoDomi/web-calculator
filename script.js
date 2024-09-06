@@ -4,6 +4,29 @@ let firstNumber = null;
 let secondNumber = null;
 let replaceDisplay = true;
 
+document.body.addEventListener('keypress', (event) => {
+    console.log(event.key);
+    if (event.key.charCodeAt(0) >= 48 && event.key.charCodeAt(0) <= 57) {
+        changeDisplay(event.key)
+    }
+    else if (event.key === '.' && !display.textContent.includes('.')) {
+        display.textContent += '.';
+    }
+    else if (event.key === 'backspace' && display.textContent !== '0') {
+        display.textContent = display.textContent.slice(0, -1);
+        if (display.textContent === "" || display.textContent === "-0") 
+            display.textContent = '0';   
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'Backspace' && display.textContent !== '0') {
+        display.textContent = display.textContent.slice(0, -1);
+        if (display.textContent === "" || display.textContent === "-0")
+            display.textContent = '0';
+    }
+})
+
 
 function resetValues() {
     op = null;
@@ -51,22 +74,20 @@ function operate(op, num1, num2) {
 }
 
 
-function changeDisplay(element) {
+function changeDisplay(equationStr) {
     
-    let equationStr = display.textContent;
-    
-    if (equationStr === '0' || replaceDisplay === true) { //if display value is 0 or if replaceDisplay is true
-        display.textContent = element.textContent;
+    if (display.textContent === '0' || replaceDisplay === true) { //if display value is 0 or if replaceDisplay is true
+        display.textContent = equationStr;
         replaceDisplay = false;
     }
     else 
-        display.textContent += element.textContent;
+        display.textContent += equationStr;
 
 }
 //assign events to number buttons
 let display_btn = document.querySelectorAll('.display-btn');
 display_btn.forEach(element => { 
-    element.addEventListener('click', ()=>changeDisplay(element));
+    element.addEventListener('click', ()=>changeDisplay(element.textContent));
 });
 
 //assign event to decimal button
@@ -74,8 +95,10 @@ let decimal_btn = document.querySelector('#decimal-btn');
 decimal_btn.addEventListener('click', () => { 
     let displayStr = display.textContent;
 
-    if (!displayStr.includes('.'))
+    if (!displayStr.includes('.')) {
         display.textContent += '.';
+        replaceDisplay = false;
+    }
 });
 
 
