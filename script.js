@@ -113,8 +113,11 @@ let decimal_btn = document.querySelector('#decimal-btn');
 decimal_btn.addEventListener('click', () => { 
     let displayStr = display.textContent;
 
-    if (!displayStr.includes('.')) {
-        display.textContent += '.';
+    if (!displayStr.includes('.') || replaceDisplay) {
+        if (replaceDisplay)
+            display.textContent = '0.';
+        else
+            display.textContent += '.';
         replaceDisplay = false;
     }
 });
