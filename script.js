@@ -86,8 +86,8 @@ function operate(op, num1, num2) {
             break;
     }
 
-    //return result;
-    return roundLength(result);
+
+    return Number(roundLength(result));
 }
 
 
