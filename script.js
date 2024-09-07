@@ -92,14 +92,14 @@ function operate(op, num1, num2) {
 
 
 function changeDisplay(equationStr) {
-    if (display.textContent.length < MAX_LENGTH) {
-        if (display.textContent === '0' || replaceDisplay === true) { //if display value is 0 or if replaceDisplay is true
-            display.textContent = equationStr;
-            replaceDisplay = false;
-        }
-        else
-            display.textContent += equationStr;
+      
+    if (display.textContent === '0' || replaceDisplay === true) { 
+        display.textContent = equationStr;
+        replaceDisplay = false;
     }
+    else if(display.textContent.length < MAX_LENGTH)
+        display.textContent += equationStr;
+    
 }
 
 //assign events to number buttons
