@@ -57,13 +57,16 @@ function divide(a, b) {
 
 function roundLength(value) {
     valueStr = String(value);
-    if (!valueStr.includes('.') && valueStr.length > MAX_LENGTH) {
+    if (!valueStr.includes('.') && valueStr.length - 1 > MAX_LENGTH) { //subtract 1 to remove decimal from length of number
         return NaN;
     }
     else if (valueStr.includes('.')) {
         let valueArr = valueStr.split('.');
+        let totalLength = valueArr[0].length + valueArr[1].length;
         let wholeDigitsLen = valueArr[0].length;
-        return value.toPrecision(MAX_LENGTH - wholeDigitsLen);
+        if (totalLength > MAX_LENGTH && wholeDigitsLen < MAX_LENGTH) {
+            return value.toPrecision(MAX_LENGTH - wholeDigitsLen);
+        }
     }
         
     return value;
