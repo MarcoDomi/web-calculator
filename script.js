@@ -37,6 +37,17 @@ function resetValues() {
     replaceDisplay = true;
 }
 
+function getDisplayLength() {
+    if (display.textContent.includes('.')) {
+        let arrValue = display.textContent.split('.');
+        return arrValue[0].length + arrValue[1].length
+    }
+    else {
+        return display.textContent.length;
+    }
+    
+}
+
 function add(a, b) {
     return a + b;
 }
@@ -57,7 +68,7 @@ function divide(a, b) {
 
 function roundLength(value) {
     valueStr = String(value);
-    if (!valueStr.includes('.') && valueStr.length - 1 > MAX_LENGTH) { //subtract 1 to remove decimal from length of number
+    if (!valueStr.includes('.') && valueStr.length > MAX_LENGTH) { 
         return NaN;
     }
     else if (valueStr.includes('.')) {
@@ -100,7 +111,7 @@ function changeDisplay(equationStr) {
         display.textContent = equationStr;
         replaceDisplay = false;
     }
-    else if(display.textContent.length < MAX_LENGTH)
+    else if(getDisplayLength() < MAX_LENGTH)
         display.textContent += equationStr;
     
 }
