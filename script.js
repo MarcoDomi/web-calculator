@@ -75,6 +75,9 @@ function roundLength(value) {
         let valueArr = valueStr.split('.');
         let totalLength = valueArr[0].length + valueArr[1].length;
         let wholeDigitsLen = valueArr[0].length;
+        if (wholeDigitsLen === MAX_LENGTH) {
+            return Math.round(value);
+        }
         if (totalLength > MAX_LENGTH && wholeDigitsLen < MAX_LENGTH) {
             return value.toPrecision(MAX_LENGTH - wholeDigitsLen);
         }
